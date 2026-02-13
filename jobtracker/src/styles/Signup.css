@@ -1,0 +1,52 @@
+/* Gradient background */
+.signup-wrapper {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f5f5f5, #e0e0e0);
+  padding: 2rem;
+}
+
+.text-danger{
+  margin-bottom: 5rem;
+  font-weight: bolder;
+}
+/* Glassmorphism card */
+.glass-card {
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(15px);
+  border-radius: 1rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  max-width: 400px;
+  width: 100%;
+}
+
+/* Google button */
+.google-btn {
+  background: #ffffff;
+  border: 1px solid #dadce0;
+  border-radius: 0.75rem;
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 0.75rem 1rem;
+  transition: all 0.3s ease;
+  width: 100%;
+  justify-content: center;
+}
+
+/* Hover effect for Google button */
+.google-btn:hover {
+  background: #283941;
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+/* Image inside button */
+.google-btn img {
+  display: inline-block;
+}
+
+@media (max-width: 576px) {
+  .glass-card {
+    padding: 2rem 1.5rem;
+  }
+}

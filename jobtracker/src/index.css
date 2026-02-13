@@ -1,0 +1,197 @@
+/* Import Inter font */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #f6f6f8; /* background-light */
+  color: #0d121b;
+}
+
+body.dark-mode {
+  background-color: #101622; /* background-dark */
+  color: #f8f9fc;
+}
+
+/* Primary color */
+.text-primary-custom {
+  color: #135bec !important;
+}
+
+.bg-primary-custom {
+  background-color: #135bec !important;
+}
+/* =========================
+   PRIMARY CTA BUTTON
+========================= */
+
+.btn-primary-custom, .signUp {
+  background-color: #135bec;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 1rem;
+  padding: 0.75rem 1.75rem;
+  border-radius: 0.5rem;
+  border: none;
+  box-shadow: 0 12px 25px rgba(19, 91, 236, 0.25);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-primary-custom:hover, .signUp:hover {
+  background-color: #0f4ed1;
+  color: #ffffff;
+  transform: scale(1.03);
+  box-shadow: 0 18px 35px rgba(19, 91, 236, 0.35);
+}
+
+.btn-primary-custom:active {
+  transform: scale(0.98);
+}
+/* =========================
+   HERO SECTION
+========================= */
+
+.hero-section {
+  background-color: #f6f6f8;
+}
+
+/* Badge */
+.hero-badge {
+  background-color: rgba(19, 91, 236, 0.1);
+  color: #135bec;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.4rem 0.9rem;
+  border-radius: 999px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* Main heading */
+.hero-title {
+  font-size: clamp(2.5rem, 5vw, 3.75rem);
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  line-height: 1.1;
+  color: #0d121b;
+}
+
+.hero-title span {
+  color: #135bec;
+}
+
+/* Subtitle */
+.hero-text {
+  max-width: 620px;
+  font-size: 1.05rem;
+  color: #4c669a;
+  line-height: 1.6;
+}
+
+/* Secondary button */
+.btn-secondary-custom {
+  background-color: #ffffff;
+  border: 1px solid #cfd7e7;
+  color: #0d121b;
+  font-weight: 700;
+  padding: 0.75rem 1.75rem;
+  border-radius: 0.5rem;
+  transition: background-color 0.2s ease;
+}
+
+.btn-secondary-custom:hover {
+  background-color: #f0f2f7;
+}
+
+/* Trust text */
+.hero-trust {
+  font-size: 0.85rem;
+  color: #4c669a;
+}
+
+.hero-trust strong {
+  color: #135bec;
+}
+/* =========================
+   DASHBOARD MOCKUP (HERO)
+========================= */
+
+.dashboard-wrapper {
+  position: relative;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+/* Glow background */
+.dashboard-glow {
+  position: absolute;
+  inset: -20px;
+  background: rgba(19, 91, 236, 0.08);
+  border-radius: 2rem;
+  filter: blur(50px);
+  z-index: 0;
+}
+
+/* Mockup container */
+.dashboard-mockup {
+  position: relative;
+  background: #ffffff;
+  border-radius: 1rem;
+  overflow: hidden;
+  border: 1px solid #cfd7e7;
+  box-shadow: 0 40px 80px rgba(0, 0, 0, 0.12);
+  z-index: 1;
+}
+
+/* Fake browser header */
+.dashboard-header {
+  height: 40px;
+  background: #f1f3f7;
+  border-bottom: 1px solid #cfd7e7;
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+  gap: 8px;
+}
+
+/* Browser dots */
+.dashboard-header .dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.dashboard-header .red {
+  background: #ff5f57;
+}
+
+.dashboard-header .yellow {
+  background: #febc2e;
+}
+
+.dashboard-header .green {
+  background: #28c840;
+}
+
+/* Image */
+.dashboard-image {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* =========================
+   Features
+========================= */
+.features_card {
+  background-color: #ffffff;
+  border-radius: 1rem;
+  padding: 2rem;
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.features_card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 18px 35px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+}
+
