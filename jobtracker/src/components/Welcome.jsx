@@ -2,9 +2,12 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Briefcase, Bell, BarChart3, ArrowRight } from 'lucide-react';
 import '../styles/welcome.css'
+import { useAuthStore } from '../Store/useAuthStore';
 
 function Welcome() {
   const navigate = useNavigate();
+  const { user } = useAuthStore();
+  const displayName = user?.displayName ;
 
   const features = [
     {
@@ -34,17 +37,17 @@ function Welcome() {
     <div className="container py-4">
 
       <div className="text-center mb-5">
-        <h1 className="fw-bold">Welcome back, John! 👋</h1>
+        <h3 className="fw-bold welcome-title">Welcome back, <span style={{color: "#0b3c8bff"}}>{displayName}</span> 👋</h3>
         <p className="text-muted">Track your job applications and stay organized throughout your job search journey.</p>
       </div>
 
       {/* Feature Cards */}
       <div>
-        <h2 className="mb-4">What would you like to do?</h2>
+        <h4 className="mb-4 todo">What would you like to do?</h4>
         <div className="row g-4">
           {features.map((feature, index) => (
             <div key={index} className="col-md-4">
-              <div className="card features_card h-100 shadow-sm">
+              <div className="card feature-card h-100 shadow-sm">
                 <div className="card-body d-flex flex-column align-items-start">
                   <div 
                     className="rounded-circle d-flex justify-content-center align-items-center mb-3"

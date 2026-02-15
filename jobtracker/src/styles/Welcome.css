@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Tourney:ital,wght@0,100..900;1,100..900&display=swap');
+
 .welcome-container {
     max-width: 1400px;
     margin: 0 auto;
@@ -18,6 +20,10 @@
   .welcome-header p {
     font-size: 16px;
     color: #64748b;
+  }
+
+  .welcome-title{
+    font-family: "Tourney", sans-serif;
   }
   
   /* Quick Stats */
@@ -75,7 +81,7 @@
   
   .feature-card {
     background: white;
-    padding: 32px;
+    padding: 20px;
     border-radius: 16px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
     border: 1px solid #e2e8f0;
@@ -99,7 +105,8 @@
   
   .feature-card:hover {
     transform: translateY(-4px);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 28px 24px rgba(0, 0, 0, 0.12);
+    cursor: pointer;
   }
   
   .feature-card:hover::before {

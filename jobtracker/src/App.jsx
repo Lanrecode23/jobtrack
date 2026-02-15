@@ -8,6 +8,7 @@ import Tracking from './components/Tracking'
 import Reminders from './components/Reminders'
 import Insights from './components/Insights'
 import DashboardLayout from './components/DashboardLayout'
+import ProtectedRoute from './components/ProtectedRoute'
 
 function App() {
 
@@ -18,7 +19,7 @@ function App() {
           <Route path='/' element={<Home />} />
           <Route path='/signup' element={<Signup />} />
           <Route path='/login' element={<Login />} />
-          <Route path="/dashboard" element={<DashboardLayout />}>
+          <Route path="/dashboard" element={<ProtectedRoute><DashboardLayout /></ProtectedRoute>}>
           <Route index element={<Welcome />} />
             <Route path="/dashboard/tracking" element={<Tracking />} />
             <Route path="/dashboard/reminders" element={<Reminders />} />

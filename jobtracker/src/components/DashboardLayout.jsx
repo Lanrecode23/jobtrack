@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Outlet, NavLink } from 'react-router-dom';
+import { Outlet, NavLink, useNavigate } from 'react-router-dom';
 import { 
   LayoutDashboard, 
   Briefcase, 
@@ -11,10 +11,25 @@ import {
   User
 } from 'lucide-react';
 import '../styles/DashboardLayout.css';
+import { useAuthStore } from '../Store/useAuthStore';
 
 function DashboardLayout() {
   const [sidebarOpen, setSidebarOpen] = useState(window.innerWidth > 768);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const navigate = useNavigate()
+
+
+  const{user, loading, error, logout} = useAuthStore();
+
+  const handleLogout = async () => {
+    try {
+      await logout();
+      navigate('/');
+    } catch (e) {
+      error(e.message);
+    }
+  };
 
   useEffect(() => {
     const handleResize = () => {
@@ -26,6 +41,17 @@ function DashboardLayout() {
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownOpen && !event.target.closest('.user-dropdown-container')) {
+        setDropdownOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [dropdownOpen]);
 
   const navItems = [
     { path: '/dashboard', icon: LayoutDashboard, label: 'Dashboard', end: true },
@@ -67,7 +93,7 @@ function DashboardLayout() {
               end={item.end}
               onClick={handleNavClick}
               className={({ isActive }) => 
-                `nav-item ${isActive ? 'active' : ''}`
+                `nav-item ${isActive ? 'active' : ''} text-decoration-none`
               }
             >
               <item.icon size={20} />
@@ -79,9 +105,9 @@ function DashboardLayout() {
         <div className="sidebar-footer">
           <div className="user-info">
             <User size={20} />
-            {sidebarOpen && <span>John Doe</span>}
+            {sidebarOpen && <span>{user?.displayName}</span>}
           </div>
-          <button className="logout-btn">
+          <button className="logout-btn" onClick={handleLogout} disabled={loading}>
             <LogOut size={20} />
             {sidebarOpen && <span>Logout</span>}
           </button>
@@ -104,8 +130,33 @@ function DashboardLayout() {
               <Bell size={20} />
               <span className="notification-badge">3</span>
             </div>
-            <div className="user-avatar">
-              <User size={20} />
+            
+            <div className="user-dropdown-container">
+              <div 
+                className="user-avatar"
+                onClick={() => setDropdownOpen(!dropdownOpen)}
+              >
+                <User size={20} />
+              </div>
+
+              {dropdownOpen && (
+                <div className="user-dropdown">
+                  <div className="dropdown-header">
+                    <div className="dropdown-avatar">
+                      <User size={24} />
+                    </div>
+                    <div className="dropdown-user-info">
+                      <p className="dropdown-name">{user?.displayName}</p>
+                      <p className="dropdown-email">{user?.email}</p>
+                    </div>
+                  </div>
+                  
+                  <button className="dropdown-item logout" onClick={handleLogout} disabled={loading}>
+                    <LogOut size={18} />
+                    <span>Logout</span>
+                  </button>
+                </div>
+              )}
             </div>
           </div>
         </header>
