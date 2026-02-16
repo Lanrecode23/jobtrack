@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import dashboard from "../assets/dashboard.png";
 
 function Hero() {
 
@@ -44,7 +45,7 @@ function Hero() {
                             <span className="dot green"></span>
                         </div>
                         <img
-                            src="https://i.pinimg.com/originals/98/5d/6d/985d6daccc6ebd6bc717b6671a93d590.png"
+                            src={dashboard}
                             alt="dashboard"
                             className="img-fluid dashboard-image"
                         />

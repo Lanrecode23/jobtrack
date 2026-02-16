@@ -1,3 +1,27 @@
 .centralized-tracking,.table,.welcome-cards{
     font-family: "Texturina", serif;
 }
+.job-card {
+    background: #ffffff;
+    transition: all 0.2s ease;
+    border: 1px solid #f1f1f1;
+  }
+  
+  .job-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+  }
+  
+  .company-logo {
+    width: 50px;
+    height: 50px;
+    border-radius: 12px;
+    background: #e9eefc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 18px;
+    color: #3b5bdb;
+  }
+  

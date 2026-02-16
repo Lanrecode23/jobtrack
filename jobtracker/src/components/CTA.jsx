@@ -11,7 +11,7 @@ function CTA() {
   return (
     <section className="py-5 text-center">
       <div className="container">
-        <h2 className="fw-bold mb-3">Ready to organize your search?</h2>
+        <h3 className="fw-bold mb-3">Ready to organize your search?</h3>
         <p className="text-muted mb-4">
           Sign up today and get your custom dashboard set up in less than 2 minutes.
         </p>

@@ -122,6 +122,7 @@ body.dark-mode {
   position: relative;
   max-width: 1000px;
   margin: 0 auto;
+  box-shadow: 40px 40px 80px rgba(19, 142, 218, 0.12)!important;
 }
 
 /* Glow background */
@@ -141,7 +142,7 @@ body.dark-mode {
   border-radius: 1rem;
   overflow: hidden;
   border: 1px solid #cfd7e7;
-  box-shadow: 0 40px 80px rgba(0, 0, 0, 0.12);
+  box-shadow: 40px 40px 40px rgba(19, 142, 218, 0.12)!important;
   z-index: 1;
 }
 
@@ -180,6 +181,7 @@ body.dark-mode {
   width: 100%;
   height: auto;
   display: block;
+  box-shadow: 0 40px 80px rgba(125, 229, 33, 0.12)!important;
 }
 
 /* =========================

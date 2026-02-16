@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 import { useJobStore } from '../Store/useJobStore';
 import { useNavigate } from 'react-router-dom';
 import EditJobModal from './EditJobModal';
 import Swal from 'sweetalert2';
-import '../styles/TrackingFormList.css'
+import '../styles/TrackingFormList.css';
 
 function TrackingFormList() {
   const [editingJob, setEditingJob] = useState(null);
@@ -26,103 +26,101 @@ function TrackingFormList() {
         confirmButtonText: 'Yes, delete it!',
       }).then((result) => {
         if (result.isConfirmed) {
+          deleteJob(jobId);
           Swal.fire(
             '<span style="font-size: 1.2rem;">Deleted!</span>',
             '<span style="font-size: 0.9rem;">Your job has been deleted.</span>',
-            'success',
-          )
-          deleteJob(jobId);
+            'success'
+          );
         }
-      }).catch((error) => {
-        console.error('Error deleting job:', error);
       });
     } catch (error) {
       console.error('Error deleting job:', error);
     }
-
   };
-
 
   return (
     <div className="container mt-5 centralized-tracking">
       <hr />
-      <div className="d-flex justify-content-between align-items-center mt-5 mb-4">
-        <h4 className="">Centralized Tracking</h4>
-        <button className="btn btn-primary" onClick={() => navigate('/dashboard/tracking')}>
+      <div className="d-flex justify-content-between align-items-center mt-4 mb-4">
+        <h4>Centralized Tracking</h4>
+        <button
+          className="btn btn-primary"
+          onClick={() => navigate('/dashboard/tracking')}
+        >
           Add Job
         </button>
       </div>
 
-      <div className="card shadow-sm">
-        <div className="card-body p-0">
-          <div className="table-responsive">
-            <table className="table table-hover mb-0">
-              <thead className="table-light">
-                <tr>
-                  <th>Company</th>
-                  <th>Position</th>
-                  <th>Status</th>
-                  <th>Date Applied</th>
-                  <th>Notes</th>
-                  <th className="text-end">Actions</th>
-                </tr>
-              </thead>
+      <div className="card shadow-sm border-0">
+        <div className="card-body p-3">
 
-              <tbody>
-                {jobs.length === 0 ? (
-                  <tr>
-                    <td colSpan="6" className="text-center py-4 text-muted">
-                      No jobs added yet. Click "Add Job" to get started!
-                    </td>
-                  </tr>
-                ) : (
-                  jobs.map((job) => (
-                    <tr key={job.id}>
-                      <td className="fw-semibold text-primary">
-                        {job.company}
-                      </td>
+          {jobs.length === 0 ? (
+            <div className="text-center py-4 text-muted">
+              No jobs added yet. Click "Add Job" to get started!
+            </div>
+          ) : (
+            jobs.map((job) => (
+              <div key={job.id} className="job-card mb-3 p-3 rounded-4 shadow-sm">
 
-                      <td>{job.position}</td>
+                <div className="d-flex align-items-center">
 
-                      <td>
-                        <span
-                          className={`badge 
-                          ${job.status === 'Interview' ? 'bg-warning text-dark' :
-                              job.status === 'Rejected' ? 'bg-danger' :
-                                job.status === 'Offer' ? 'bg-success' :
-                                  'bg-secondary'}`}
-                        >
-                          {job.status}
-                        </span>
-                      </td>
+                  {/* Logo Placeholder */}
+                  <div className="company-logo me-3">
+                    {job.company?.charAt(0)}
+                  </div>
 
-                      <td>
-                        {new Date(job.dateApplied).toLocaleDateString()}
-                      </td>
+                  {/* Job Info */}
+                  <div className="flex-grow-1">
+                    <h6 className="fw-bold mb-1">{job.company}</h6>
+                    <div className="text-muted small">{job.position}</div>
+                    <div className="text-muted small">
+                      Applied {new Date(job.dateApplied).toLocaleDateString()}
+                    </div>
+                  </div>
 
-                      <td>{job.notes || '-'}</td>
+                  {/* Status Badge */}
+                  <span
+                    className={`badge rounded-pill px-3 py-2 
+                      ${job.status === 'Interview' ? 'bg-warning text-dark' :
+                        job.status === 'Rejected' ? 'bg-danger' :
+                        job.status === 'Offer' ? 'bg-success' :
+                        'bg-secondary'}`}
+                  >
+                    {job.status?.toUpperCase()}
+                  </span>
 
-                      <td className="text-end">
-                        <button className="btn btn-sm btn-primary me-2" onClick={() => setEditingJob(job)}>
-                          Edit
-                        </button>
-                        <button className="btn btn-sm btn-danger" onClick={() => handleDelete(job.id)}>
-                          Delete
-                        </button>
-                      </td>
-                    </tr>
-                  ))
-                )}
-              </tbody>
+                </div>
 
-            </table>
-            <EditJobModal
-              editingJob={editingJob} setEditingJob={setEditingJob} />
-          </div>
+                {/* Action Buttons */}
+                <div className="mt-3 d-flex justify-content-end">
+                  <button
+                    className="btn btn-sm btn-outline-primary me-2"
+                    onClick={() => setEditingJob(job)}
+                  >
+                    Edit
+                  </button>
+                  <button
+                    className="btn btn-sm btn-outline-danger"
+                    onClick={() => handleDelete(job.id)}
+                  >
+                    Delete
+                  </button>
+                </div>
+
+              </div>
+            ))
+          )}
+
         </div>
       </div>
+
+      <EditJobModal
+        editingJob={editingJob}
+        setEditingJob={setEditingJob}
+      />
     </div>
-  )
+  );
 }
 
 export default TrackingFormList;

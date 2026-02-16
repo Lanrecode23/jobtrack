@@ -23,7 +23,7 @@ function Features() {
     <section className="py-5 bg-light" id="features">
       <div className="container">
         <div className="text-center mb-5">
-          <h2 className="fw-bold">Everything you need to land the job</h2>
+          <h3 className="fw-bold mb-4">Everything you need to land the job</h3>
           <p className="text-muted">Stay organized and ahead of the competition with our powerful suite of tracking tools.</p>
         </div>
         <div className="row g-4">

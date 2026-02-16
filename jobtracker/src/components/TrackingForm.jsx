@@ -4,6 +4,7 @@ import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom';
 
 function TrackingForm() {
+  const [dateApplied, setDateApplied] = useState('');
   const [company, setCompany] = useState('');
   const [position, setPosition] = useState('');
   const [status, setStatus] = useState('');
@@ -25,7 +26,7 @@ function TrackingForm() {
       position,
       status,
       notes,
-      dateApplied: new Date().toISOString()
+      dateApplied: dateApplied ? new Date(dateApplied).toISOString() : null
     });
 
     // Show success alert
@@ -41,6 +42,7 @@ function TrackingForm() {
     setPosition('');
     setStatus('');
     setNotes('');
+    setDateApplied('');
 
     //navigate to dashboard
     Navigate('/dashboard');
@@ -95,6 +97,20 @@ function TrackingForm() {
               <option value="Rejected">Rejected</option>
               <option value="Offer">Offer</option>
             </select>
+          </div>
+
+          <div className="mb-3">
+            <label htmlFor="dateApplied" className="form-label">Date Applied:</label>
+            <input
+              type="date"
+              className="form-control"
+              id="dateApplied"
+              placeholder="Enter date applied"
+              value={dateApplied}
+              required
+              onChange={(e) => setDateApplied(e.target.value)}
+
+            />
           </div>
 
           <div className="mb-3">
