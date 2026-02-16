@@ -7,9 +7,9 @@ import logo from "../assets/logo.png";
 function Header() {
   return (
     <nav className="navbar navbar-expand-sm bg-white border-bottom shadow-sm sticky-top">
-      <div className="container py-2">
+      <div className="container">
         <Link className="navbar-brand d-flex align-items-center fw-bold" to="/">
-          <img src={logo} alt="Logo" style={{ height: "50px", width: "auto" }} />
+          <img src={logo} alt="Logo" style={{ height: "45px", width: "auto" }} />
         </Link>
         <button
           className="navbar-toggler"
