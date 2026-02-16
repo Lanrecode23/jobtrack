@@ -1,10 +1,12 @@
-@import url('https://fonts.googleapis.com/css2?family=Tourney:ital,wght@0,100..900;1,100..900&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Texturina:ital,opsz,wght@0,12..72,100..900;1,12..72,100..900&family=Tourney:ital,wght@0,100..900;1,100..900&display=swap');
 .welcome-container {
     max-width: 1400px;
     margin: 0 auto;
   }
   
+  .todo{
+    font-family: "Texturina", serif;
+  }
   /* Welcome Header */
   .welcome-header {
     margin-bottom: 32px;
@@ -20,6 +22,7 @@
   .welcome-header p {
     font-size: 16px;
     color: #64748b;
+    font-family: "Texturina", serif;
   }
 
   .welcome-title{

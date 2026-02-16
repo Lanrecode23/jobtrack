@@ -13,6 +13,7 @@ import {
 import '../styles/DashboardLayout.css';
 import { useAuthStore } from '../Store/useAuthStore';
 
+
 function DashboardLayout() {
   const [sidebarOpen, setSidebarOpen] = useState(window.innerWidth > 768);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
@@ -117,7 +118,7 @@ function DashboardLayout() {
       {/* Main Content Area */}
       <div className="main-content">
         {/* Top Navbar */}
-        <header className="navbar">
+        <header className="Navbar">
           <button 
             className="menu-toggle"
             onClick={() => setSidebarOpen(!sidebarOpen)}
@@ -165,6 +166,7 @@ function DashboardLayout() {
         <main className="page-content">
           <Outlet />
         </main>
+        
       </div>
     </div>
   );

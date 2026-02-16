@@ -20,7 +20,7 @@ function Features() {
   ];
 
   return (
-    <section className="py-5 bg-light">
+    <section className="py-5 bg-light" id="features">
       <div className="container">
         <div className="text-center mb-5">
           <h2 className="fw-bold">Everything you need to land the job</h2>

@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Briefcase, Bell, BarChart3, ArrowRight } from 'lucide-react';
 import '../styles/welcome.css'
 import { useAuthStore } from '../Store/useAuthStore';
+import TrackingFormList from './TrackingFormList';
 
 function Welcome() {
   const navigate = useNavigate();
@@ -38,13 +39,13 @@ function Welcome() {
 
       <div className="text-center mb-5">
         <h3 className="fw-bold welcome-title">Welcome back, <span style={{color: "#0b3c8bff"}}>{displayName}</span> 👋</h3>
-        <p className="text-muted">Track your job applications and stay organized throughout your job search journey.</p>
+        <p className="text-muted todo">Track your job applications and stay organized throughout your job search journey.</p>
       </div>
 
       {/* Feature Cards */}
       <div>
         <h4 className="mb-4 todo">What would you like to do?</h4>
-        <div className="row g-4">
+        <div className="row g-4 welcome-cards">
           {features.map((feature, index) => (
             <div key={index} className="col-md-4">
               <div className="card feature-card h-100 shadow-sm">
@@ -73,6 +74,8 @@ function Welcome() {
           ))}
         </div>
       </div>
+
+      <TrackingFormList/>
 
     </div>
   );

@@ -26,7 +26,7 @@ function Header() {
        {/* NavLink */}
         <div className="collapse navbar-collapse" id="jobtrackNavbar">
           <ul className="navbar-nav ms-auto align-items-sm-center">
-            <li className="nav-item">
+            <li className="nav-item" >
               <a className="nav-link fw-medium" href="#features">
                 Features
               </a>
@@ -39,7 +39,7 @@ function Header() {
             </li>
 
             <li className="nav-item mt-2 mt-sm-0 ms-sm-3">
-              <Link to="/login" className="btn btn-outline-primary btn-sm">
+              <Link to="/signup" className="btn btn-outline-primary btn-md fw-medium">
                 Login
               </Link>
             </li>
