@@ -198,3 +198,12 @@ body.dark-mode {
   cursor: pointer;
 }
 
+.nav-link {
+  padding: 0px  2px!important;
+}
+
+@media (max-width: 576px) {
+  .nav-link {
+    padding: 0px  0px!important;
+  }
+}

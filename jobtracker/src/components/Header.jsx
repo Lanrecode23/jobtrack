@@ -1,15 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import logo from "../assets/logo.png";
-
+import '../index.css'
 
 
 function Header() {
   return (
     <nav className="navbar navbar-expand-sm bg-white border-bottom shadow-sm sticky-top">
-      <div className="container">
+      <div className="container flex-sm-nowrap py-2">
         <Link className="navbar-brand d-flex align-items-center fw-bold" to="/">
-          <img src={logo} alt="Logo" style={{ height: "45px", width: "auto" }} />
+          <img src={logo} alt="Logo" style={{ height: "50px", width: "auto" }} />
         </Link>
         <button
           className="navbar-toggler"
@@ -25,7 +25,7 @@ function Header() {
 
        {/* NavLink */}
         <div className="collapse navbar-collapse" id="jobtrackNavbar">
-          <ul className="navbar-nav ms-auto align-items-sm-center">
+        <ul className="navbar-nav ms-auto">
             <li className="nav-item" >
               <a className="nav-link fw-medium" href="#features">
                 Features

@@ -24,10 +24,9 @@ function Hero() {
                     <button className="btn btn-primary-custom" onClick={handleNav}>
                         Get Started for Free
                     </button>
-
-                    <button className="btn btn-secondary-custom">
+                <a href="#features" className="btn btn-secondary-custom">
                         Explore Features
-                    </button>
+                    </a>
                 </div>
 
                 <p className="hero-trust mt-4">

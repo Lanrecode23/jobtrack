@@ -8,7 +8,6 @@ import Reminders from './components/Reminders'
 import Insights from './components/Insights'
 import DashboardLayout from './components/DashboardLayout'
 import ProtectedRoute from './components/ProtectedRoute'
-// In App.jsx or index.js
 
 
 
