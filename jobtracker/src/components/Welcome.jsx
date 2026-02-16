@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Briefcase, Bell, BarChart3, ArrowRight } from 'lucide-react';
-import '../styles/welcome.css'
+import '../styles/Welcome.css'
 import { useAuthStore } from '../Store/useAuthStore';
 import TrackingFormList from './TrackingFormList';
 
