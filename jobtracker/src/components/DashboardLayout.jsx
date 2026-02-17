@@ -215,7 +215,7 @@ function DashboardLayout() {
                     disabled={loading}
                   >
                     <LogOut size={18} />
-                    <span>{loading ? 'Logging out...' : 'Logout'}</span>
+                    <span>logout</span>
                   </button>
                 </div>
               )}
