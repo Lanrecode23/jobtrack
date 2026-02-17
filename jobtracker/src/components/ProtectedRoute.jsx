@@ -8,7 +8,7 @@ function ProtectedRoute({children}) {
 
     useEffect(() => {
         if(!user && !loading) {
-            navigate('/signup');
+            navigate('/signup', { replace: true });
         }
     }, [user, loading, navigate])
   return (
