@@ -45,14 +45,11 @@ function DashboardLayout() {
     try {
       await logout();
       navigate('/', { replace: true });
+
+      // Close dropdown
+      setDropdownOpen(false);
       
-      // Success message
-      Swal.fire({
-        icon: 'success',
-        title: 'Logged out successfully',
-        timer: 1500,
-        showConfirmButton: false
-      });
+      
     } catch (err) {
       Swal.fire({
         icon: 'error',
