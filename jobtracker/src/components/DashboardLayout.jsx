@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Outlet, NavLink, useNavigate } from 'react-router-dom';
-import { 
-  LayoutDashboard, 
-  Briefcase, 
-  Bell, 
-  BarChart3, 
-  Menu, 
+import {
+  LayoutDashboard,
+  Briefcase,
+  Bell,
+  BarChart3,
+  Menu,
   X,
   LogOut,
   User
@@ -13,25 +13,30 @@ import {
 import '../styles/DashboardLayout.css';
 import { useAuthStore } from '../Store/useAuthStore';
 
-
 function DashboardLayout() {
   const [sidebarOpen, setSidebarOpen] = useState(window.innerWidth > 768);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const navigate = useNavigate()
 
+  const navigate = useNavigate();
+  const { user, loading, logout } = useAuthStore();
 
-  const{user, loading, error, logout} = useAuthStore();
-
+  /* ===========================
+     Logout Handler
+  ============================ */
   const handleLogout = async () => {
     try {
       await logout();
-      navigate('/');
-    } catch (e) {
-      error(e.message);
+      navigate('/', { replace: true });
+    } catch (err) {
+      console.error(err);
     }
   };
 
+
+  /* ===========================
+     Responsive Sidebar
+  ============================ */
   useEffect(() => {
     const handleResize = () => {
       const mobile = window.innerWidth <= 768;
@@ -43,16 +48,23 @@ function DashboardLayout() {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
+  /* ===========================
+     FIXED Dropdown Outside Click
+     (Samsung Safe)
+  ============================ */
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (dropdownOpen && !event.target.closest('.user-dropdown-container')) {
+      if (!event.target.closest('.user-dropdown-container')) {
         setDropdownOpen(false);
       }
     };
 
     document.addEventListener('pointerdown', handleClickOutside);
-    return () => document.removeEventListener('pointerdown', handleClickOutside);
-  }, [dropdownOpen]);
+
+    return () => {
+      document.removeEventListener('pointerdown', handleClickOutside);
+    };
+  }, []);
 
   const navItems = [
     { path: '/dashboard', icon: LayoutDashboard, label: 'Dashboard', end: true },
@@ -62,17 +74,16 @@ function DashboardLayout() {
   ];
 
   const handleNavClick = () => {
-    if (isMobile) {
-      setSidebarOpen(false);
-    }
+    if (isMobile) setSidebarOpen(false);
   };
 
   return (
     <div className="dashboard-container">
+
       {/* Overlay for mobile */}
       {isMobile && sidebarOpen && (
-        <div 
-          className="sidebar-overlay" 
+        <div
+          className="sidebar-overlay"
           onClick={() => setSidebarOpen(false)}
         />
       )}
@@ -93,7 +104,7 @@ function DashboardLayout() {
               to={item.path}
               end={item.end}
               onClick={handleNavClick}
-              className={({ isActive }) => 
+              className={({ isActive }) =>
                 `nav-item ${isActive ? 'active' : ''} text-decoration-none`
               }
             >
@@ -108,32 +119,40 @@ function DashboardLayout() {
             <User size={20} />
             {sidebarOpen && <span>{user?.displayName}</span>}
           </div>
-          <button className="logout-btn" onClick={handleLogout} disabled={loading}>
+
+          <button
+            type="button"
+            className="logout-btn"
+            onClick={handleLogout}
+            disabled={loading}
+          >
             <LogOut size={20} />
             {sidebarOpen && <span>Logout</span>}
           </button>
         </div>
       </aside>
 
-      {/* Main Content Area */}
+      {/* Main Content */}
       <div className="main-content">
+
         {/* Top Navbar */}
         <header className="Navbar">
-          <button 
+          <button
             className="menu-toggle"
             onClick={() => setSidebarOpen(!sidebarOpen)}
           >
             {sidebarOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
-          
+
           <div className="navbar-right">
+
             <div className="notification-icon">
               <Bell size={20} />
               <span className="notification-badge">3</span>
             </div>
-            
+
             <div className="user-dropdown-container">
-              <div 
+              <div
                 className="user-avatar"
                 onClick={() => setDropdownOpen(!dropdownOpen)}
               >
@@ -151,14 +170,24 @@ function DashboardLayout() {
                       <p className="dropdown-email">{user?.email}</p>
                     </div>
                   </div>
-                  
-                  <button className="dropdown-item logout" onClick={handleLogout} disabled={loading}>
+
+                  <button
+                    type="button"
+                    className="dropdown-item logout"
+                    onClick={(e) => {
+                      e.stopPropagation();   // Important for Samsung
+                      handleLogout();
+                    }}
+                    disabled={loading}
+                  >
                     <LogOut size={18} />
                     <span>Logout</span>
                   </button>
+
                 </div>
               )}
             </div>
+
           </div>
         </header>
 
@@ -166,7 +195,7 @@ function DashboardLayout() {
         <main className="page-content">
           <Outlet />
         </main>
-        
+
       </div>
     </div>
   );
