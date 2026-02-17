@@ -519,3 +519,113 @@
     display: inline;
   }
 }
+/* ===========================
+   MOBILE LOGOUT FIX
+============================ */
+
+/* Ensure dropdown is clickable on mobile */
+.user-dropdown-container {
+  position: relative;
+  z-index: 1000;
+}
+
+.user-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: 0.5rem;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  z-index: 1001;
+  min-width: 250px;
+  
+  /* ✅ Critical for mobile */
+  pointer-events: auto !important;
+  touch-action: manipulation !important;
+}
+
+.dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  border: none;
+  background: transparent;
+  width: 100%;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  
+  /* ✅ Critical for mobile */
+  pointer-events: auto !important;
+  touch-action: manipulation !important;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0.1);
+}
+
+.dropdown-item:active {
+  background-color: #f0f0f0;
+}
+
+.dropdown-item.logout {
+  color: #dc3545;
+  border-top: 1px solid #eee;
+}
+
+.dropdown-item.logout:hover {
+  background-color: #fff5f5;
+}
+
+/* User avatar clickable */
+.user-avatar {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  /* ✅ Critical for mobile */
+  touch-action: manipulation !important;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0.1);
+}
+
+/* Logout button in sidebar */
+.logout-btn {
+  /* ✅ Critical for mobile */
+  touch-action: manipulation !important;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0.1);
+  pointer-events: auto !important;
+}
+
+/* Mobile specific fixes */
+@media (max-width: 768px) {
+  .user-dropdown {
+    right: -10px;
+    min-width: 220px;
+    max-width: 90vw;
+  }
+  
+  .dropdown-item {
+    padding: 1rem;
+    font-size: 1rem;
+    min-height: 48px; /* ✅ Bigger tap target */
+  }
+  
+  .user-avatar {
+    padding: 8px;
+    min-width: 44px;
+    min-height: 44px; /* ✅ Bigger tap target */
+  }
+  
+  .logout-btn {
+    min-height: 48px; /* ✅ Bigger tap target */
+    padding: 12px;
+  }
+}
+
+/* Fix for SweetAlert on mobile */
+.swal2-container {
+  z-index: 99999 !important;
+}
+
+.swal2-popup {
+  z-index: 99999 !important;
+}
