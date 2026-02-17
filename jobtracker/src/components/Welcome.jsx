@@ -45,7 +45,7 @@ function Welcome() {
       {/* Feature Cards */}
       <div>
         <h4 className="mb-4 todo">What would you like to do?</h4>
-        <div className="row g-4 welcome-cards">
+        <div className="row g-4">
           {features.map((feature, index) => (
             <div key={index} className="col-md-4">
               <div className="card feature-card h-100 shadow-sm">

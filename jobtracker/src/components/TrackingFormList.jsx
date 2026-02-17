@@ -40,7 +40,7 @@ function TrackingFormList() {
   };
 
   return (
-    <div className="container mt-5 centralized-tracking">
+    <div className="container mt-5">
       <hr />
       <div className="d-flex justify-content-between align-items-center mt-4 mb-4">
         <h4>Centralized Tracking</h4>

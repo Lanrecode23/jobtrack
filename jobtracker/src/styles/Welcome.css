@@ -4,9 +4,9 @@
     margin: 0 auto;
   }
   
-  .todo{
+  /* .todo{
     font-family: "Texturina", serif;
-  }
+  } */
   /* Welcome Header */
   .welcome-header {
     margin-bottom: 32px;
@@ -22,7 +22,7 @@
   .welcome-header p {
     font-size: 16px;
     color: #64748b;
-    font-family: "Texturina", serif;
+    /* font-family: "Texturina", serif; */
   }
 
   .welcome-title{
