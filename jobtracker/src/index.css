@@ -1,17 +1,19 @@
 /* Import Inter font */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Texturina:ital,opsz,wght@0,12..72,100..900;1,12..72,100..900&family=Tourney:ital,wght@0,100..900;1,100..900&display=swap');
 
 *{
   scroll-behavior: smooth;
+
 }
 body {
-  font-family: 'Inter', sans-serif;
-  background-color: #f6f6f8; /* background-light */
+  font-family: "PT Sans", sans-serif;
+  background-color: #f6f6f8; 
   color: #0d121b;
 }
 
 body.dark-mode {
-  background-color: #101622; /* background-dark */
+  background-color: #101622; 
   color: #f8f9fc;
 }
 

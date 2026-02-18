@@ -29,12 +29,12 @@ function Features() {
         <div className="row g-4">
           {featureData.map((feature, idx) => (
             <div className="col-md-4" key={idx}>
-              <div className="card h-100 features_card shadow-md text-center p-3">
+              <div className="card h-100 features_card shadow-md text-center py-4">
                 <div className="mb-3 fs-1 text-primary-custom">
                   <i className={feature.icon}></i>
                 </div>
                 <h5 className="fw-bold">{feature.title}</h5>
-                <p className="text-muted">{feature.description}</p>
+                <p className="text-muted text-center">{feature.description}</p>
               </div>
             </div>
           ))}

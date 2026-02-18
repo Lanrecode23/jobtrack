@@ -2,14 +2,16 @@ import React from "react";
 import { Link } from "react-router-dom";
 import logo from "../assets/logo.png";
 import '../index.css'
+import { TrendingUp } from "lucide-react";
 
 
 function Header() {
   return (
-    <nav className="navbar navbar-expand-sm bg-white border-bottom shadow-sm sticky-top">
+    <nav className="navbar navbar-expand-sm bg-white border-bottom shadow-sm ">
       <div className="container flex-sm-nowrap py-2">
-        <Link className="navbar-brand d-flex align-items-center fw-bold" to="/">
-          <img src={logo} alt="Logo" style={{ height: "50px", width: "auto" }} />
+        <Link className="navbar-brand d-flex align-items-center fw-bold fs-3" to="/">
+          <TrendingUp size={28} className="me-2 text-primary" />
+          JobTrack
         </Link>
         <button
           className="navbar-toggler"
@@ -23,9 +25,9 @@ function Header() {
           <span className="navbar-toggler-icon"></span>
         </button>
 
-       {/* NavLink */}
+        {/* NavLink */}
         <div className="collapse navbar-collapse" id="jobtrackNavbar">
-        <ul className="navbar-nav ms-auto">
+          <ul className="navbar-nav ms-auto">
             <li className="nav-item" >
               <a className="nav-link fw-medium" href="#features">
                 Features
