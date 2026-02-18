@@ -5,10 +5,15 @@ import { useAuthStore } from "../Store/useAuthStore";
 
 function Signup() {
   const navigate = useNavigate();
- const {signInWithGoogle, error, loading} = useAuthStore();
+ const {user,signInWithGoogle, error, loading} = useAuthStore();
 
  const handleClick = async () => {
   try {
+    if (user) {
+      navigate("/dashboard");
+      return;
+    }
+    
     await signInWithGoogle();
     navigate("/dashboard");
   } catch (e) {
