@@ -23,6 +23,7 @@ function EditJobModal({ editingJob, setEditingJob }) {
       showConfirmButton: false,
       timer: 1500,
     });
+    alert("no internet")
 
     setEditingJob(null); // 
     setLoading(false);
