@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Outlet, NavLink, useNavigate } from 'react-router-dom';
 import {
   LayoutDashboard,
-  Briefcase,
+  TrendingUp,
   Bell,
   BarChart3,
   Menu,
@@ -112,7 +112,7 @@ function DashboardLayout() {
       <aside className={`sidebar ${sidebarOpen ? 'open' : 'closed'} ${isMobile ? 'mobile' : ''}`}>
         <div className="sidebar-header">
           <div className="logo">
-            <Briefcase size={28} />
+            <TrendingUp size={28} />
             {sidebarOpen && <span>JobTracker</span>}
           </div>
         </div>
