@@ -3,6 +3,7 @@ import { Outlet, NavLink, useNavigate } from 'react-router-dom';
 import {
   LayoutDashboard,
   TrendingUp,
+  Briefcase,
   Bell,
   BarChart3,
   Menu,
