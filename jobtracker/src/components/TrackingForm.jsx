@@ -127,7 +127,7 @@ function TrackingForm() {
           <div className="mb-3">
             <div className="d-grid gap-2 col-6 mx-auto">
               <button
-                className="btn btn-primary"
+                className="btn btn-primary signUp"
                 type="submit"
               >
                 {loading ? "Adding job..." : "Add Job"}

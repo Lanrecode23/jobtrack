@@ -167,7 +167,7 @@ function DashboardLayout() {
           <div className="navbar-right">
             <div className="notification-icon">
               <Bell size={20} />
-              <span className="notification-badge">3</span>
+              <span className="notification-badge">0</span>
             </div>
 
             <div className="user-dropdown-container">
