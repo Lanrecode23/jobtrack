@@ -45,7 +45,7 @@ function TrackingFormList() {
     <div className="container mt-5">
       <hr />
       <div className="d-flex justify-content-between align-items-center mt-4 mb-4">
-        <h4>Centralized Tracking</h4>
+      <h4 className="fw-semibold mb-3">Centralized Tracking</h4>
         <button
           className="btn btn-primary "
           onClick={() => navigate('/dashboard/tracking')}

@@ -5,6 +5,7 @@ import '../styles/Welcome.css'
 import { useAuthStore } from '../Store/useAuthStore';
 import TrackingFormList from './TrackingFormList';
 import RemindersFormList from './RemindersFormList';
+import AutomatedInsights from './AutomatedInsights';
 
 function Welcome() {
   const navigate = useNavigate();
@@ -78,6 +79,7 @@ function Welcome() {
 
       <TrackingFormList/>
       <RemindersFormList/>
+      <AutomatedInsights/>
 
     </div>
   );

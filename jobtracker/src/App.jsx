@@ -9,6 +9,7 @@ import Insights from './components/Insights'
 import DashboardLayout from './components/DashboardLayout'
 import ProtectedRoute from './components/ProtectedRoute'
 import { useAuthStore } from './Store/useAuthStore'
+import AutomatedInsights from './components/AutomatedInsights'
 
 
 
@@ -32,7 +33,7 @@ function App() {
           <Route index element={<Welcome />} />
             <Route path="/dashboard/tracking" element={<TrackingForm />} />
             <Route path="/dashboard/reminders" element={<Reminders />} />
-            <Route path="/dashboard/insights" element={<Insights />} />
+            <Route path="/dashboard/insights" element={<AutomatedInsights />} />
           </Route>
         </Routes>
       </BrowserRouter>

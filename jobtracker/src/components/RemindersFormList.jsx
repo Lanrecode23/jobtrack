@@ -43,7 +43,7 @@ function RemindersFormList() {
     <div className="container mt-5">
       <hr />
       <div className="d-flex justify-content-between align-items-center mt-4 mb-4">
-        <h4>Interview Reminders</h4>
+      <h4 className="fw-semibold mb-3">Interview Reminders</h4>
         <button
           className="btn btn-primary "
           onClick={() => navigate('/dashboard/reminders')}
@@ -66,7 +66,7 @@ function RemindersFormList() {
                 <div className="d-flex align-items-center">
 
                   {/* Logo Placeholder */}
-                  <div className="company-logo me-3">
+                  <div className="company-logo me-3 text-uppercase">
                     {Reminder.company?.charAt(0)}
                   </div>
 
