@@ -4,6 +4,7 @@ import { Briefcase, Bell, BarChart3, ArrowRight } from 'lucide-react';
 import '../styles/Welcome.css'
 import { useAuthStore } from '../Store/useAuthStore';
 import TrackingFormList from './TrackingFormList';
+import RemindersFormList from './RemindersFormList';
 
 function Welcome() {
   const navigate = useNavigate();
@@ -76,6 +77,7 @@ function Welcome() {
       </div>
 
       <TrackingFormList/>
+      <RemindersFormList/>
 
     </div>
   );

@@ -1,23 +1,21 @@
 import React, { useEffect, useState } from 'react';
-import { useJobStore } from '../Store/useJobStore';
+import { useReminderStore } from '../Store/useReminderStore';
 import { useNavigate } from 'react-router-dom';
-import EditJobModal from './EditJobModal';
 import Swal from 'sweetalert2';
 import '../styles/TrackingFormList.css';
 
-function TrackingFormList() {
-  const [editingJob, setEditingJob] = useState(null);
+function RemindersFormList() {
   const navigate = useNavigate();
-  const { fetchJobs, jobs, deleteJob } = useJobStore();
+  const { fetchReminders, Reminders, deleteReminder } = useReminderStore();
 
   useEffect(() => {
-    fetchJobs();
+    fetchReminders();
   }, []);
 
-  const handleDelete = async (jobId) => {
+  const handleDelete = async (reminderId) => {
     try {
       Swal.fire({
-        title: '<span style="font-size: 1.0rem;">Delete this job?</span>',
+        title: '<span style="font-size: 1.0rem;">Delete this reminder?</span>',
         html: '<p style="font-size: 0.9rem;">This action cannot be undone</p>',
         icon: 'warning',
         showCancelButton: true,
@@ -26,18 +24,18 @@ function TrackingFormList() {
         confirmButtonText: 'Yes, delete it!',
       }).then((result) => {
         if (result.isConfirmed) {
-          deleteJob(jobId);
+          deleteReminder(reminderId);
           Swal.fire({
                 icon: 'success',
                 title: '<span style="font-size: 1.2rem;">Deleted!</span>',
-                html: '<p style="font-size: 0.9rem;">Job deleted successfully</p>',
+                html: '<p style="font-size: 0.9rem;">Reminder deleted successfully</p>',
                 showConfirmButton: true,
                 timer: 1500,
               });
         }
       });
     } catch (error) {
-      console.error('Error deleting job:', error);
+      console.error('Error deleting Reminder:', error);
     }
   };
 
@@ -45,52 +43,42 @@ function TrackingFormList() {
     <div className="container mt-5">
       <hr />
       <div className="d-flex justify-content-between align-items-center mt-4 mb-4">
-        <h4>Centralized Tracking</h4>
+        <h4>Interview Reminders</h4>
         <button
           className="btn btn-primary "
-          onClick={() => navigate('/dashboard/tracking')}
+          onClick={() => navigate('/dashboard/reminders')}
         >
-          Add Job
+          Add Reminder
         </button>
       </div>
 
       <div className="card shadow-sm border-0">
         <div className="card-body p-3">
 
-          {jobs.length === 0 ? (
+          {Reminders.length === 0 ? (
             <div className="text-center py-4 text-muted">
-              No jobs added yet. Click "Add Job" to get started!
+              No reminders added yet. Click "Add Reminder" to get started!      
             </div>
           ) : (
-            jobs.map((job) => (
-              <div key={job.id} className="job-card mb-3 p-3 rounded-4 shadow-sm">
+            Reminders.map((Reminder) => (
+              <div key={Reminder.id} className="job-card mb-3 p-3 rounded-4 shadow-sm">
 
                 <div className="d-flex align-items-center">
 
                   {/* Logo Placeholder */}
                   <div className="company-logo me-3">
-                    {job.company?.charAt(0)}
+                    {Reminder.company?.charAt(0)}
                   </div>
 
                   {/* Job Info */}
                   <div className="flex-grow-1">
-                    <h6 className="fw-bold mb-1 text-uppercase">{job.company}</h6>
-                    <div className="text-muted small text-uppercase">{job.position}</div>
+                    <h6 className="fw-bold mb-1 text-uppercase">{Reminder.company}</h6>
+                    <div className="text-muted small text-uppercase">{Reminder.position}</div>
+                    <div className=" small fw-bold text-capitalize text-secondary">Mode of interview: {Reminder.mode}</div>
                     <div className="text-muted small">
-                      Applied {new Date(job.dateApplied).toLocaleDateString()}
+                    Interview Date: {new Date(Reminder.interviewDate).toLocaleDateString()}
                     </div>
                   </div>
-
-                  {/* Status Badge */}
-                  <span
-                    className={`badge rounded-pill px-3 py-2 
-                      ${job.status === 'Interview' ? 'bg-warning text-dark' :
-                        job.status === 'Rejected' ? 'bg-danger' :
-                        job.status === 'Offer' ? 'bg-success' :
-                        'bg-secondary'}`}
-                  >
-                    {job.status?.toUpperCase()}
-                  </span>
 
                 </div>
 
@@ -98,15 +86,15 @@ function TrackingFormList() {
                 <div className="mt-3 d-flex justify-content-end">
                   <button
                     className="btn btn-sm btn-outline-primary me-2"
-                    onClick={() => setEditingJob(job)}
+                    
                   >
                     Edit
                   </button>
                   <button
                     className="btn btn-sm btn-outline-danger"
-                    onClick={() => handleDelete(job.id)}
+                    onClick={() => handleDelete(Reminder.id)}
                   >
-                    Delete
+                    Delete Reminder      
                   </button>
                 </div>
 
@@ -116,13 +104,8 @@ function TrackingFormList() {
 
         </div>
       </div>
-
-      <EditJobModal
-        editingJob={editingJob}
-        setEditingJob={setEditingJob}
-      />
     </div>
   );
 }
 
-export default TrackingFormList;
+export default RemindersFormList;

@@ -9,7 +9,7 @@ function Header() {
   return (
     <nav className="navbar navbar-expand-sm bg-white border-bottom shadow-sm ">
       <div className="container flex-sm-nowrap py-2">
-        <Link className="navbar-brand d-flex align-items-center fw-bold fs-3" to="/">
+        <Link className="navbar-brand navbar_logo d-flex align-items-center fw-bold fs-3" to="/">
           <TrendingUp size={28} className="me-2 text-primary" />
           JobTrack
         </Link>
