@@ -7,6 +7,7 @@ function Reminders() {
   const [company, setCompany] = useState('');
   const [position, setPosition] = useState('');
   const [interviewDate, setInterviewDate] = useState('');
+  const [status, setStatus] = useState('');
   const [mode, setMode] = useState('');
   const [loading, setLoading] = useState(false);
   const [interviewNotes, setInterviewNotes] = useState('');
@@ -24,9 +25,12 @@ function Reminders() {
         company,
         position,
         interviewDate,
+        status,
         mode,
         interviewNotes,
       });
+
+      setLoading(true)
 
       // Clear the form fields
       setCompany('');
@@ -43,6 +47,7 @@ function Reminders() {
         timer: 1500,
       });     
       setLoading(false);
+      setLoading(false);
     } catch (error) {
       console.error('Error adding interview reminder:', error);
       setLoading(false);
@@ -55,7 +60,7 @@ function Reminders() {
     <div>
       <form onSubmit={handleSubmit}>
         <div className="container bg-light ">
-          <h4 className="fw-bold text-center mt-5 mb-5 text-secondary">Add Interview Reminder</h4>
+          <h4 className="fw-bold text-center mt-5 mb-5 text-secondary">Add Reminder</h4>
           <div className="row">
             <div className="mb-3">
               <label htmlFor="company" className="form-label">Company:</label>
@@ -99,6 +104,21 @@ function Reminders() {
           </div>
 
           <div className="mb-3">
+            <label htmlFor="status" className="form-label">Status:</label>
+            <select
+              className="form-select"
+              id="status"
+              value={status}
+              onChange={(e) => setStatus(e.target.value)}
+              required
+            >
+              <option value="">Select status</option>
+              <option value="Progress">In Progress</option>
+              <option value="Done">Done</option>
+            </select>
+          </div>
+
+          <div className="mb-3">
             <label htmlFor="mode" className="form-label">Mode:</label>
             <textarea
               className="form-control"
@@ -125,7 +145,7 @@ function Reminders() {
                 className="btn btn-primary signUp"
                 type="submit"
               >
-                Add Interview Reminder
+                {loading ? 'Submitting...' : 'Add Reminder'}
               </button>
             </div>
           </div>

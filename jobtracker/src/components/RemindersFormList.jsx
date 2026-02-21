@@ -80,16 +80,26 @@ function RemindersFormList() {
                     </div>
                   </div>
 
+                  {/* Status Badge */}
+                  <span
+                    className={`badge rounded-pill px-3 py-2 
+                      ${Reminder.status === 'Progress' ? 'bg-secondary text-light' :
+                        Reminder.status === 'Done' ? 'bg-success' :
+                        'bg-secondary'}`}
+                  >
+                    {Reminder.status?.toUpperCase()}
+                  </span>
+
                 </div>
 
                 {/* Action Buttons */}
                 <div className="mt-3 d-flex justify-content-end">
-                  <button
+                  {/* <button
                     className="btn btn-sm btn-outline-primary me-2"
                     
                   >
                     Edit
-                  </button>
+                  </button> */}
                   <button
                     className="btn btn-sm btn-outline-danger"
                     onClick={() => handleDelete(Reminder.id)}
