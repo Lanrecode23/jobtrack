@@ -23,13 +23,10 @@ function DashboardLayout() {
   const navigate = useNavigate();
   const { user, loading, logout } = useAuthStore();
 
-  /* ===========================
-     Logout Handler (IMPROVED)
-  ============================ */
   const handleLogout = async () => {
     // Close dropdown
     setDropdownOpen(false);
-    
+
     // Confirm logout
     const result = await Swal.fire({
       title: '<span style="font-size: 1.2rem;">Logout?</span>',
@@ -49,8 +46,8 @@ function DashboardLayout() {
 
       // Close dropdown
       setDropdownOpen(false);
-      
-      
+
+
     } catch (err) {
       Swal.fire({
         icon: 'error',
@@ -176,8 +173,8 @@ function DashboardLayout() {
                 onClick={() => setDropdownOpen(!dropdownOpen)}
               >
                 {user?.photoURL ? (
-                  <img 
-                    src={user.photoURL} 
+                  <img
+                    src={user.photoURL}
                     alt={user.displayName}
                     style={{ width: '32px', height: '32px', borderRadius: '50%' }}
                   />
@@ -191,8 +188,8 @@ function DashboardLayout() {
                   <div className="dropdown-header">
                     <div className="dropdown-avatar">
                       {user?.photoURL ? (
-                        <img 
-                          src={user.photoURL} 
+                        <img
+                          src={user.photoURL}
                           alt={user.displayName}
                           style={{ width: '40px', height: '40px', borderRadius: '50%' }}
                         />

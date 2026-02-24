@@ -32,8 +32,8 @@ function TrackingForm() {
     // Show success alert
     Swal.fire({
       icon: 'success',
-      title: '<span style="font-size: 1.0rem;">Job added successfully!</span>',
-      showConfirmButton: true,
+      html: '<span style="font-size: 1.0rem;">Job added successfully!</span>',
+      showConfirmButton: false,
       timer: 1500,
     });
 

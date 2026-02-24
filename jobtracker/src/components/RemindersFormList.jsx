@@ -3,9 +3,11 @@ import { useReminderStore } from '../Store/useReminderStore';
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import '../styles/TrackingFormList.css';
+import EditReminderModal from './EditReminderModal';
 
 function RemindersFormList() {
   const navigate = useNavigate();
+  const [editingReminder, setEditingReminder] = useState(null);
   const { fetchReminders, Reminders, deleteReminder } = useReminderStore();
 
   useEffect(() => {
@@ -26,16 +28,22 @@ function RemindersFormList() {
         if (result.isConfirmed) {
           deleteReminder(reminderId);
           Swal.fire({
-                icon: 'success',
-                title: '<span style="font-size: 1.2rem;">Deleted!</span>',
-                html: '<p style="font-size: 0.9rem;">Reminder deleted successfully</p>',
-                showConfirmButton: true,
-                timer: 1500,
-              });
+            icon: 'success',
+            title: '<span style="font-size: 1.2rem;">Deleted!</span>',
+            html: '<p style="font-size: 0.9rem;">Reminder deleted successfully</p>',
+            showConfirmButton: false,
+            timer: 1500,
+          });
         }
       });
     } catch (error) {
-      console.error('Error deleting Reminder:', error);
+      Swal.fire({
+        icon: 'error',
+        title: '<span style="font-size: 1.2rem;">Error!</span>',
+        html: '<p style="font-size: 0.9rem;">Failed to delete reminder. Please try again.</p>',
+        showConfirmButton: false,
+        timer: 1500,
+      })
     }
   };
 
@@ -43,7 +51,7 @@ function RemindersFormList() {
     <div className="container mt-5">
       <hr />
       <div className="d-flex justify-content-between align-items-center mt-4 mb-4">
-      <h4 className="fw-semibold mb-3">Interview Reminders</h4>
+        <h4 className="fw-semibold mb-3">Interview Reminders</h4>
         <button
           className="btn btn-primary "
           onClick={() => navigate('/dashboard/reminders')}
@@ -57,7 +65,7 @@ function RemindersFormList() {
 
           {Reminders.length === 0 ? (
             <div className="text-center py-4 text-muted">
-              No reminders added yet. Click "Add Reminder" to get started!      
+              No reminders added yet. Click "Add Reminder" to get started!
             </div>
           ) : (
             Reminders.map((Reminder) => (
@@ -76,7 +84,7 @@ function RemindersFormList() {
                     <div className="text-muted small text-uppercase">{Reminder.position}</div>
                     <div className=" small fw-bold text-capitalize text-secondary">Mode of interview: {Reminder.mode}</div>
                     <div className="text-muted small">
-                    Interview Date: {new Date(Reminder.interviewDate).toLocaleDateString()}
+                      Interview Date: {new Date(Reminder.interviewDate).toLocaleDateString()}
                     </div>
                   </div>
 
@@ -85,7 +93,7 @@ function RemindersFormList() {
                     className={`badge rounded-pill px-3 py-2 
                       ${Reminder.status === 'Progress' ? 'bg-secondary text-light' :
                         Reminder.status === 'Done' ? 'bg-success' :
-                        'bg-secondary'}`}
+                          'bg-secondary'}`}
                   >
                     {Reminder.status?.toUpperCase()}
                   </span>
@@ -94,17 +102,17 @@ function RemindersFormList() {
 
                 {/* Action Buttons */}
                 <div className="mt-3 d-flex justify-content-end">
-                  {/* <button
+                  <button
                     className="btn btn-sm btn-outline-primary me-2"
-                    
+                    onClick={() => setEditingReminder(Reminder)}
                   >
                     Edit
-                  </button> */}
+                  </button>
                   <button
                     className="btn btn-sm btn-outline-danger"
                     onClick={() => handleDelete(Reminder.id)}
                   >
-                    Delete Reminder      
+                    Delete Reminder
                   </button>
                 </div>
 
@@ -114,6 +122,8 @@ function RemindersFormList() {
 
         </div>
       </div>
+
+      <EditReminderModal editingReminder={editingReminder} setEditingReminder={setEditingReminder} />
     </div>
   );
 }
