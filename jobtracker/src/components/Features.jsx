@@ -30,10 +30,10 @@ function Features() {
           <h3 className="fw-bold mb-4">Everything you need to land the job</h3>
           <p className="text-muted">Stay organized and ahead of the competition with our powerful suite of tracking tools.</p>
         </div>
-        <div className="row g-4">
+        <div className="row g-4" >
           {featureData.map((feature, idx) => (
             <div className="col-md-4" key={idx}>
-              <div className="card h-100 features_card shadow-md text-center py-4">
+              <div className="card h-100 features_card shadow-md text-center py-4" >
               <div 
                     className="rounded-circle d-flex justify-content-center mx-auto align-items-center mb-3"
                     style={{
@@ -44,8 +44,8 @@ function Features() {
                   >
                     <feature.icon size={24} color="white" />
                   </div>
-                <h5 className="fw-bold">{feature.title}</h5>
-                <p className="text-muted text-center">{feature.description}</p>
+                <h5 className="fw-bold fs-5">{feature.title}</h5>
+                <p className="text-center fs-6">{feature.description}</p>
               </div>
             </div>
           ))}
