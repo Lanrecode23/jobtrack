@@ -6,6 +6,44 @@
   scroll-behavior: smooth;
 
 }
+ /* login button */
+.btn_login {
+  cursor: pointer;
+  font-weight: 700;
+  transition: all 0.2s;
+  padding: 6px 40px;
+  border-radius: 100px;
+  background:#135bec;
+  border: 1px solid transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+}
+.btn_login span{
+  color: #fff;
+}
+
+.btn_login:hover {
+  background: #0f4ed1;
+}
+
+.btn_login > svg {
+  width: 34px;
+  margin-left: 10px;
+  transition: transform 0.3s ease-in-out;
+  color: #fff;
+}
+
+.btn_login:hover svg {
+  transform: translateX(5px);
+}
+
+.btn_login:active {
+  transform: scale(0.95);
+}
+/* end of login button */
+
 .navbar_logo{
   font-family: 'Lobster Two', cursive;
   font-size: 1.7rem !important;
