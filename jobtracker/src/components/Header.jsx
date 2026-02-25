@@ -47,7 +47,7 @@ function Header() {
               </Link>
             </li> */}
 
-            <button onClick={()=> navigate('/signup')}>
+            <button onClick={()=> navigate('/signup')} className="btn_login">
               <span className="text-center login_text">Login</span>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
