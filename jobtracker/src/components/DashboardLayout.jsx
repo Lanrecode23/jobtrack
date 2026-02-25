@@ -176,7 +176,7 @@ function DashboardLayout() {
                         </div>
                       ))
                     ) : (
-                      <div className="p-4 text-center text-muted small">All caught up! 🎉</div>
+                      <div className="p-4 text-center text-muted small">No Active Reminders</div>
                     )}
                   </div>
                   <NavLink to="/dashboard/pending" className="d-block text-center p-2 small text-primary fw-bold text-decoration-none" onClick={() => setNotifOpen(false)}>
