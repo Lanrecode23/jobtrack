@@ -31,7 +31,7 @@ function TrackingFormList() {
                 icon: 'success',
                 title: '<span style="font-size: 1.2rem;">Deleted!</span>',
                 html: '<p style="font-size: 0.9rem;">Job deleted successfully</p>',
-                showConfirmButton: true,
+                showConfirmButton: false,
                 timer: 1500,
               });
         }

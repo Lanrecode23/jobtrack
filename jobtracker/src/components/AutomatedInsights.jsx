@@ -10,6 +10,7 @@ import {
   LinearScale,
   BarElement
 } from "chart.js";
+import { useJobStore } from "../Store/useJobStore";
 
 ChartJS.register(
   ArcElement,
@@ -21,13 +22,44 @@ ChartJS.register(
 );
 
 const AutomatedInsights = () => {
-  // Donut Data
+  const { jobs } = useJobStore();
+
+
+  // EMPTY STATE
+  if (!jobs || jobs.length === 0) {
+    return (
+      <div className="p-4 bg-light min-vh-100">
+        <h4 className="fw-semibold mb-4 mt-2">Automated Insights</h4>
+        <p className="text-muted">No applications yet. Start adding jobs to see insights.</p>
+      </div>
+    );
+  }
+
+
+  // STATUS COUNT (DONUT)
+  const statusCounts = jobs.reduce((acc, job) => {
+    const status = job.status || "Pending";
+    if (!acc[status]) acc[status] = 0;
+    acc[status]++;
+    return acc;
+  }, {});
+
+  const statusLabels = Object.keys(statusCounts);
+  const statusValues = Object.values(statusCounts);
+
+  const statusColors = [
+    "#facc15", // Pending
+    "#22c55e", // Offer
+    "#ef4444", // Rejected
+    "#3b82f6"  // Others
+  ];
+
   const statusData = {
-    labels: ["Pending", "Offer", "Rejected"],
+    labels: statusLabels,
     datasets: [
       {
-        data: [5, 3, 2],
-        backgroundColor: ["#facc15", "#22c55e", "#ef4444"],
+        data: statusValues,
+        backgroundColor: statusColors,
         borderWidth: 0
       }
     ]
@@ -35,18 +67,41 @@ const AutomatedInsights = () => {
 
   const donutOptions = {
     cutout: "65%",
-    plugins: {
-      legend: { display: false }
-    }
+    plugins: { legend: { display: false } }
   };
 
-  // Bar Data
+
+  // INTERVIEWS PER MONTH (BAR)
+
+  const monthlyCounts = {};
+
+  const monthOrder = [
+    "January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December"
+  ];
+
+  const sortedLabels = Object.keys(monthlyCounts).sort((a, b) =>
+    monthOrder.indexOf(a) - monthOrder.indexOf(b)
+  );
+
+
+  jobs.forEach((job) => {
+    if (!job.interviewDate) return;
+
+    const month = new Date(job.interviewDate).toLocaleString("default", {
+      month: "long"
+    });
+
+    if (!monthlyCounts[month]) monthlyCounts[month] = 0;
+    monthlyCounts[month]++;
+  });
+
   const interviewData = {
-    labels: ["June", "July", "August"],
+    labels: sortedLabels,
     datasets: [
       {
         label: "Interviews",
-        data: [3, 4, 3],
+        data: sortedLabels.map(month => monthlyCounts[month]),
         backgroundColor: "#3b82f6",
         borderRadius: 6
       }
@@ -63,10 +118,26 @@ const AutomatedInsights = () => {
     }
   };
 
+
+  // SMART INSIGHTS
+  const total = jobs.length;
+  const offers = jobs.filter(job => job.status === "Offer").length;
+  const rejected = jobs.filter(job => job.status === "Rejected").length;
+  const applied = jobs.filter(job => job.status === "Applied").length;
+
+  let insightMessage = "";
+
+  if (offers > 0) {
+    insightMessage = `You received ${offers} offer(s). Great job!`;
+  } else if (applied > 5) {
+    insightMessage = "You are actively applying. Keep going!";
+  } else {
+    insightMessage = `You have ${total} total applications.`;
+  }
+
   return (
     <div className="p-4 bg-light min-vh-100">
-
-        <hr />
+      <hr />
       <h4 className="fw-semibold mb-4 mt-2">Automated Insights</h4>
 
       <Row className="g-4">
@@ -81,28 +152,14 @@ const AutomatedInsights = () => {
               </div>
 
               <div className="ms-4 w-100">
-                <LegendRow color="#facc15" label="Pending" value={5} />
-                <LegendRow color="#22c55e" label="Offer" value={3} />
-                <LegendRow color="#ef4444" label="Rejected" value={2} />
-
-                <hr />
-
-                <div className="d-flex justify-content-between small text-muted">
-                  <span>
-                    <span
-                      style={legendDot("#3b82f6")}
-                      className="me-2"
-                    ></span>
-                    Pending 5
-                  </span>
-                  <span>
-                    <span
-                      style={legendDot("#22c55e")}
-                      className="me-2"
-                    ></span>
-                    Rejected 2
-                  </span>
-                </div>
+                {statusLabels.map((label, index) => (
+                  <LegendRow
+                    key={label}
+                    color={statusColors[index]}
+                    label={label}
+                    value={statusCounts[label]}
+                  />
+                ))}
               </div>
             </div>
           </Card>
@@ -116,12 +173,8 @@ const AutomatedInsights = () => {
             <Bar data={interviewData} options={barOptions} />
 
             <div className="mt-3 small text-muted">
-              <div className="mb-2">
-                • Notes & Statistics: in August
-              </div>
-              <div>
-                • Invite sent for 5 interviews in July and August
-              </div>
+              <div className="mb-2">• {insightMessage}</div>
+              <div>• {rejected} application(s) were rejected</div>
             </div>
           </Card>
         </Col>
@@ -133,19 +186,20 @@ const AutomatedInsights = () => {
 const LegendRow = ({ color, label, value }) => (
   <div className="d-flex justify-content-between align-items-center mb-2">
     <div className="d-flex align-items-center">
-      <span style={legendDot(color)} className="me-2"></span>
+      <span
+        style={{
+          width: "12px",
+          height: "12px",
+          borderRadius: "50%",
+          display: "inline-block",
+          backgroundColor: color
+        }}
+        className="me-2"
+      ></span>
       {label}
     </div>
     <span className="fw-semibold">{value}</span>
   </div>
 );
-
-const legendDot = (color) => ({
-  width: "12px",
-  height: "12px",
-  borderRadius: "50%",
-  display: "inline-block",
-  backgroundColor: color
-});
 
 export default AutomatedInsights;

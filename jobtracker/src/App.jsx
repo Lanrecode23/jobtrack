@@ -5,11 +5,11 @@ import Home from './Home/Home'
 import Welcome from './components/Welcome'
 import TrackingForm from './components/TrackingForm'
 import Reminders from './components/Reminders'
-import Insights from './components/Insights'
 import DashboardLayout from './components/DashboardLayout'
 import ProtectedRoute from './components/ProtectedRoute'
 import { useAuthStore } from './Store/useAuthStore'
 import AutomatedInsights from './components/AutomatedInsights'
+import Pending from './components/Pending'
 
 
 
@@ -30,9 +30,10 @@ function App() {
           <Route path='/' element={<Home />} />
           <Route path='/signup' element={<Signup />} />
           <Route path="/dashboard" element={<ProtectedRoute><DashboardLayout /></ProtectedRoute>}>
-          <Route index element={<Welcome />} />
+            <Route index element={<Welcome />} />
             <Route path="/dashboard/tracking" element={<TrackingForm />} />
             <Route path="/dashboard/reminders" element={<Reminders />} />
+            <Route path="/dashboard/pending" element={<Pending />} />
             <Route path="/dashboard/insights" element={<AutomatedInsights />} />
           </Route>
         </Routes>
