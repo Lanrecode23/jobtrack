@@ -10,6 +10,7 @@ import ProtectedRoute from './components/ProtectedRoute'
 import { useAuthStore } from './Store/useAuthStore'
 import AutomatedInsights from './components/AutomatedInsights'
 import Pending from './components/Pending'
+import NotFound from './components/NotFound'
 
 
 
@@ -27,6 +28,7 @@ function App() {
     <>
       <BrowserRouter>
         <Routes>
+          <Route path='*' element={<NotFound />} />
           <Route path='/' element={<Home />} />
           <Route path='/signup' element={<Signup />} />
           <Route path="/dashboard" element={<ProtectedRoute><DashboardLayout /></ProtectedRoute>}>
