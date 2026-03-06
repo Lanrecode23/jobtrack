@@ -1,17 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Outlet, NavLink, useNavigate } from 'react-router-dom';
-import {
-  LayoutDashboard,
-  TrendingUp,
-  Briefcase,
-  Bell,
-  BarChart3,
-  Menu,
-  X,
-  LogOut,
-  User,
-  Clock
-} from 'lucide-react';
+import {LayoutDashboard,TrendingUp,Briefcase,Bell,BarChart3,Menu,X,LogOut,User,Clock} from 'lucide-react';
 import Swal from 'sweetalert2';
 import '../styles/DashboardLayout.css';
 import { useAuthStore } from '../Store/useAuthStore';
@@ -113,7 +102,11 @@ function DashboardLayout() {
 
         <div className="sidebar-footer">
           <div className="user-info">
-            <User size={20} />
+          {user?.photoURL ? (
+                  <img src={user.photoURL} alt="user" style={{ width: '32px', height: '32px', borderRadius: '50%' }} />
+                ) : (
+                  <User size={20} />
+                )}
             {sidebarOpen && <span>{user?.displayName}</span>}
           </div>
           <button type="button" className="logout-btn" onClick={handleLogout} disabled={loading}>
