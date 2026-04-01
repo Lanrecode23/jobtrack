@@ -12,7 +12,7 @@ export const useAuthStore = create((set) => ({
   loading: true,
   error: null,
 
-  // 🔹 Google Sign In
+  //Google Sign In
   signInWithGoogle: async () => {
     set({ loading: true, error: null });
 
@@ -49,7 +49,7 @@ export const useAuthStore = create((set) => ({
     }
   },
 
-  // 🔹 Logout
+  //Logout
   logout: async () => {
     set({ loading: true, error: null });
 
@@ -63,7 +63,7 @@ export const useAuthStore = create((set) => ({
     }
   },
 
-  // 🔹 Listen to Auth State
+  //Listen to Auth State
   checkAuthState: () => {
     return onAuthStateChanged(auth, (firebaseUser) => {
       if (firebaseUser) {
